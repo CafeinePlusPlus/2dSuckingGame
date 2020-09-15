@@ -1,0 +1,56 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://PlayerResources/ManIdle/Man_1.png" type="Texture" id=1]
+[ext_resource path="res://PlayerResources/ManIdle/Man_2.png" type="Texture" id=2]
+[ext_resource path="res://PlayerResources/ManIdle/Man_3.png" type="Texture" id=3]
+[ext_resource path="res://PlayerResources/ManIdle/Man_4.png" type="Texture" id=4]
+[ext_resource path="res://PlayerResources/ManLeft/ManWalkLeft_1.png" type="Texture" id=5]
+[ext_resource path="res://PlayerResources/ManRight/ManWalkRight_2.png" type="Texture" id=6]
+[ext_resource path="res://PlayerResources/ManLeft/ManWalkLeft_3.png" type="Texture" id=7]
+[ext_resource path="res://PlayerResources/ManRight/ManWalkRight_3.png" type="Texture" id=8]
+[ext_resource path="res://PlayerResources/ManRight/ManWalkRight_1.png" type="Texture" id=9]
+[ext_resource path="res://PlayerResources/ManLeft/ManWalkLeft_2.png" type="Texture" id=10]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 10 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "LeftWalk",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 6 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "RightWalk",
+"speed": 5.0
+} ]
+
+[node name="Player" type="KinematicBody2D"]
+collision_layer = 14
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "idle"
+
+[node name="IdleCollision" type="CollisionPolygon2D" parent="."]
+visible = false
+position = Vector2( 0, -1.58024 )
+scale = Vector2( 1, 1.03267 )
+polygon = PoolVector2Array( -10.9932, -11.2992, -11.5551, -16.5432, -7.06018, -21.7873, 7.54831, -21.9746, 11.2941, -16.5432, 11.2941, -11.6737, 12.0432, -8.11526, 3.98983, -2.30933, 1.92966, 3.12204, 12.0432, 2.1856, 16.0433, 6.11745, 19.6017, 16.6056, 15.789, 19.0415, 12.0432, 17.7305, 11.361, 10.2378, 6.58519, 7.80304, 2.49153, 10.239, 14.2541, 32.1392, -13.8026, 31.5899, -3.06374, 10.2132, -7.64872, 8.36491, -11.8627, 10.6124, -11.1805, 17.9178, -14.739, 19.4161, -18.4848, 16.4195, -17.2941, 8.45855, -13.2407, 2.74746, -2.37797, 2.93475, -5.37458, -2.30933, -11.1805, -7.17882 )
+
+[node name="LeftCollision" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PoolVector2Array( -7.60555, -20.1121, -3.37378, -21.003, 5.53521, -21.2257, 11.326, -14.7667, 11.7715, -8.08495, 2.19434, -1.84866, 5.75793, 2.60583, 5.75793, 16.192, 3.75341, 17.0829, 6.64883, 23.3192, 3.30796, 27.7737, 4.42159, 30.4464, 4.42159, 31.56, -10.2782, 31.56, -13.6191, 29.3328, -13.6191, 27.3283, -2.92833, 27.3283, -5.3783, 23.3192, -4.04195, 17.3057, -6.71465, 14.8557, -13.6191, 16.6375, -16.5145, 14.8557, -17.1827, 9.06485, -15.1782, 7.50577, -11.1691, 7.95122, -5.3783, 7.7285, -4.93285, 1.49221, -2.26015, -2.29411, -14.0646, -9.64402 )
+disabled = true
+
+[node name="LeftCollision2" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PoolVector2Array( 7.606, -20.112, 3.374, -21.003, -5.535, -21.226, -11.326, -14.767, -11.771, -8.085, -2.194, -1.849, -5.758, 2.606, -5.758, 16.192, -3.753, 17.083, -6.649, 23.319, -3.308, 27.774, -4.422, 30.446, -4.422, 31.56, 10.278, 31.56, 13.619, 29.333, 13.619, 27.328, 2.928, 27.328, 5.378, 23.319, 4.042, 17.306, 6.715, 14.856, 13.619, 16.637, 16.515, 14.856, 17.183, 9.065, 15.178, 7.506, 11.169, 7.951, 5.378, 7.728, 4.933, 1.492, 2.26, -2.294, 14.065, -9.644 )
+disabled = true
