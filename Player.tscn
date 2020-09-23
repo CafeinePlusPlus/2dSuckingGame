@@ -1,56 +1,349 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=44 format=2]
 
-[ext_resource path="res://PlayerResources/ManIdle/Man_1.png" type="Texture" id=1]
-[ext_resource path="res://PlayerResources/ManIdle/Man_2.png" type="Texture" id=2]
-[ext_resource path="res://PlayerResources/ManIdle/Man_3.png" type="Texture" id=3]
-[ext_resource path="res://PlayerResources/ManIdle/Man_4.png" type="Texture" id=4]
-[ext_resource path="res://PlayerResources/ManLeft/ManWalkLeft_1.png" type="Texture" id=5]
-[ext_resource path="res://PlayerResources/ManRight/ManWalkRight_2.png" type="Texture" id=6]
-[ext_resource path="res://PlayerResources/ManLeft/ManWalkLeft_3.png" type="Texture" id=7]
-[ext_resource path="res://PlayerResources/ManRight/ManWalkRight_3.png" type="Texture" id=8]
-[ext_resource path="res://PlayerResources/ManRight/ManWalkRight_1.png" type="Texture" id=9]
-[ext_resource path="res://PlayerResources/ManLeft/ManWalkLeft_2.png" type="Texture" id=10]
+[ext_resource path="res://PlayerResources/pengu.png" type="Texture" id=1]
+[ext_resource path="res://Sprinkles.shader" type="Shader" id=2]
+[ext_resource path="res://EmperorPenguin_PublicDomain.png" type="Texture" id=3]
+[ext_resource path="res://icon.png" type="Texture" id=4]
+[ext_resource path="res://BG.shader" type="Shader" id=5]
+[ext_resource path="res://water.shader" type="Shader" id=6]
+[ext_resource path="res://PlayerResources/scripts/Player.gd" type="Script" id=11]
+[ext_resource path="res://PlayerResources/Buttons/PS4.png" type="Texture" id=12]
+[ext_resource path="res://new_convexpolygonshape2d.tres" type="Shape2D" id=13]
+[ext_resource path="res://PlayerResources/RightShape.tres" type="Shape2D" id=14]
 
-[sub_resource type="SpriteFrames" id=1]
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 5 )
+shader_param/color = Vector3( 1, 0.9, 0.3 )
+shader_param/OCTAVES = 4
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 2 )
+shader_param/color = Vector3( 0.3, 0, 0.7 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 12 )
+region = Rect2( 32, 48, 16, 16 )
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 8.0
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 12 )
+region = Rect2( 32, 64, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 12 )
+region = Rect2( 32, 80, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 12 )
+region = Rect2( 32, 96, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 12 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 12 )
+region = Rect2( 16, 80, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 4
+atlas = ExtResource( 12 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 4
+atlas = ExtResource( 12 )
+region = Rect2( 16, 48, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=12]
+flags = 4
+atlas = ExtResource( 12 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=13]
+flags = 4
+atlas = ExtResource( 12 )
+region = Rect2( 16, 32, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=14]
+flags = 4
+atlas = ExtResource( 12 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=15]
+flags = 4
+atlas = ExtResource( 12 )
+region = Rect2( 16, 64, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=16]
 animations = [ {
-"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"frames": [ SubResource( 8 ), SubResource( 9 ) ],
+"loop": false,
+"name": "left",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 10 ), SubResource( 11 ) ],
+"loop": false,
+"name": "right",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 12 ), SubResource( 13 ) ],
+"loop": false,
+"name": "up",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 14 ), SubResource( 15 ) ],
+"loop": false,
+"name": "down",
+"speed": 5.0
+} ]
+
+[sub_resource type="ConvexPolygonShape2D" id=17]
+points = PoolVector2Array( 10, -5, 10, 15, 0, 15, -10, 15, -10, -5, 0, -20 )
+
+[sub_resource type="ConvexPolygonShape2D" id=18]
+points = PoolVector2Array( -15, -10, -15, 0, -15, 10, 5, 10, 20, 0, 5, -10 )
+
+[sub_resource type="ConvexPolygonShape2D" id=19]
+points = PoolVector2Array( 10, 5, 10, -15, 0, -15, -10, -15, -10, 5, 0, 20 )
+
+[sub_resource type="ConvexPolygonShape2D" id=20]
+points = PoolVector2Array( 0, 0, 40, 40, 80, 0 )
+
+[sub_resource type="AtlasTexture" id=21]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=22]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=23]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=24]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=25]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 64, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=26]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=27]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=28]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=29]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 64, 64, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=30]
+animations = [ {
+"frames": [ SubResource( 21 ) ],
 "loop": true,
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ), ExtResource( 10 ), ExtResource( 7 ) ],
+"frames": [ SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ) ],
 "loop": true,
 "name": "LeftWalk",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 9 ), ExtResource( 6 ), ExtResource( 8 ) ],
+"frames": [ SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ) ],
 "loop": true,
 "name": "RightWalk",
 "speed": 5.0
 } ]
 
+[sub_resource type="CapsuleShape2D" id=31]
+radius = 21.977
+height = 6.07984
+
+[sub_resource type="ShaderMaterial" id=32]
+shader = ExtResource( 6 )
+shader_param/color = Vector3( 0.35, 0.48, 0.95 )
+shader_param/xscale = null
+shader_param/yscale = null
+
+[sub_resource type="ArrayMesh" id=33]
+surfaces/0 = {
+"aabb": AABB( -32, -32, 0, 64, 64, 0 ),
+"array_data": PoolByteArray( 0, 0, 0, 66, 0, 0, 0, 194, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 66, 0, 0, 0, 66, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 194, 0, 0, 0, 66, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 194, 0, 0, 0, 194, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 248, 65, 0, 0, 0, 194, 0, 0, 124, 63, 0, 0, 0, 0 ),
+"array_index_data": PoolByteArray( 4, 0, 0, 0, 1, 0, 1, 0, 2, 0, 3, 0, 3, 0, 4, 0, 1, 0 ),
+"blend_shape_data": [  ],
+"format": 262417,
+"index_count": 9,
+"material": SubResource( 32 ),
+"name": "This",
+"primitive": 4,
+"skeleton_aabb": [  ],
+"vertex_count": 5
+}
+
 [node name="Player" type="KinematicBody2D"]
-collision_layer = 14
+collision_mask = 14
+script = ExtResource( 11 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+material = SubResource( 1 )
+texture = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 2 )
+texture = ExtResource( 3 )
+
+[node name="Xbutton" type="TouchScreenButton" parent="."]
+position = Vector2( 265, 100 )
+scale = Vector2( 2, 2 )
+normal = SubResource( 3 )
+shape = SubResource( 4 )
+
+[node name="Squarebutton" type="TouchScreenButton" parent="."]
+position = Vector2( 240, 75 )
+scale = Vector2( 2, 2 )
+normal = SubResource( 5 )
+shape = SubResource( 4 )
+
+[node name="Trianglebutton" type="TouchScreenButton" parent="."]
+position = Vector2( 265, 50 )
+scale = Vector2( 2, 2 )
+normal = SubResource( 6 )
+shape = SubResource( 4 )
+
+[node name="Circlebutton" type="TouchScreenButton" parent="."]
+position = Vector2( 290, 75 )
+scale = Vector2( 2, 2 )
+normal = SubResource( 7 )
+shape = SubResource( 4 )
+
+[node name="DPAD" type="Node2D" parent="."]
+position = Vector2( -300, 50 )
+
+[node name="Sprite" type="AnimatedSprite" parent="DPAD"]
+show_behind_parent = true
+position = Vector2( 40, 40 )
+scale = Vector2( 5, 5 )
+frames = SubResource( 16 )
+animation = "right"
+
+[node name="DownArr" type="TouchScreenButton" parent="DPAD"]
+position = Vector2( 40, 65 )
+shape = SubResource( 17 )
+shape_centered = false
+
+[node name="LeftArr" type="TouchScreenButton" parent="DPAD"]
+position = Vector2( 15, 40 )
+shape = SubResource( 18 )
+shape_centered = false
+
+[node name="UpArr" type="TouchScreenButton" parent="DPAD"]
+position = Vector2( 40, 15 )
+shape = SubResource( 19 )
+shape_centered = false
+
+[node name="RightArr" type="TouchScreenButton" parent="DPAD"]
+position = Vector2( 65, 40 )
+shape = ExtResource( 14 )
+shape_centered = false
+
+[node name="Area2D" type="Area2D" parent="DPAD"]
+gravity = 0.0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DPAD/Area2D"]
+shape = SubResource( 20 )
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="DPAD/Area2D"]
+position = Vector2( 80, 0 )
+rotation = 1.5708
+shape = SubResource( 20 )
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="DPAD/Area2D"]
+position = Vector2( 80, 80 )
+rotation = 3.14159
+shape = SubResource( 20 )
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="DPAD/Area2D"]
+position = Vector2( 0, 80 )
+rotation = 4.71239
+shape = SubResource( 20 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="DPAD/Area2D"]
+position = Vector2( 40, -10 )
+rotation = 3.14159
+shape = ExtResource( 13 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="DPAD/Area2D"]
+position = Vector2( 90, 40 )
+rotation = 4.71239
+shape = ExtResource( 13 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="DPAD/Area2D"]
+position = Vector2( 40, 90 )
+shape = ExtResource( 13 )
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="DPAD/Area2D"]
+position = Vector2( -10, 40 )
+rotation = 1.5708
+shape = ExtResource( 13 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 30 )
+animation = "idle"
+playing = true
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+enabled = true
+exclude_parent = false
+collision_mask = 4
+collide_with_areas = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+zoom = Vector2( 0.7, 0.7 )
+smoothing_enabled = true
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 1 )
-animation = "idle"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 31 )
 
-[node name="IdleCollision" type="CollisionPolygon2D" parent="."]
+[node name="EnergyBar" type="Node2D" parent="."]
+
+[node name="Sprite" type="MeshInstance2D" parent="EnergyBar"]
 visible = false
-position = Vector2( 0, -1.58024 )
-scale = Vector2( 1, 1.03267 )
-polygon = PoolVector2Array( -10.9932, -11.2992, -11.5551, -16.5432, -7.06018, -21.7873, 7.54831, -21.9746, 11.2941, -16.5432, 11.2941, -11.6737, 12.0432, -8.11526, 3.98983, -2.30933, 1.92966, 3.12204, 12.0432, 2.1856, 16.0433, 6.11745, 19.6017, 16.6056, 15.789, 19.0415, 12.0432, 17.7305, 11.361, 10.2378, 6.58519, 7.80304, 2.49153, 10.239, 14.2541, 32.1392, -13.8026, 31.5899, -3.06374, 10.2132, -7.64872, 8.36491, -11.8627, 10.6124, -11.1805, 17.9178, -14.739, 19.4161, -18.4848, 16.4195, -17.2941, 8.45855, -13.2407, 2.74746, -2.37797, 2.93475, -5.37458, -2.30933, -11.1805, -7.17882 )
+position = Vector2( -306.304, -100.294 )
+scale = Vector2( 0.57, 0.171 )
+mesh = SubResource( 33 )
+texture = ExtResource( 4 )
 
-[node name="LeftCollision" type="CollisionPolygon2D" parent="."]
-visible = false
-polygon = PoolVector2Array( -7.60555, -20.1121, -3.37378, -21.003, 5.53521, -21.2257, 11.326, -14.7667, 11.7715, -8.08495, 2.19434, -1.84866, 5.75793, 2.60583, 5.75793, 16.192, 3.75341, 17.0829, 6.64883, 23.3192, 3.30796, 27.7737, 4.42159, 30.4464, 4.42159, 31.56, -10.2782, 31.56, -13.6191, 29.3328, -13.6191, 27.3283, -2.92833, 27.3283, -5.3783, 23.3192, -4.04195, 17.3057, -6.71465, 14.8557, -13.6191, 16.6375, -16.5145, 14.8557, -17.1827, 9.06485, -15.1782, 7.50577, -11.1691, 7.95122, -5.3783, 7.7285, -4.93285, 1.49221, -2.26015, -2.29411, -14.0646, -9.64402 )
-disabled = true
-
-[node name="LeftCollision2" type="CollisionPolygon2D" parent="."]
-visible = false
-polygon = PoolVector2Array( 7.606, -20.112, 3.374, -21.003, -5.535, -21.226, -11.326, -14.767, -11.771, -8.085, -2.194, -1.849, -5.758, 2.606, -5.758, 16.192, -3.753, 17.083, -6.649, 23.319, -3.308, 27.774, -4.422, 30.446, -4.422, 31.56, 10.278, 31.56, 13.619, 29.333, 13.619, 27.328, 2.928, 27.328, 5.378, 23.319, 4.042, 17.306, 6.715, 14.856, 13.619, 16.637, 16.515, 14.856, 17.183, 9.065, 15.178, 7.506, 11.169, 7.951, 5.378, 7.728, 4.933, 1.492, 2.26, -2.294, 14.065, -9.644 )
-disabled = true
+[node name="Line2D" type="Line2D" parent="EnergyBar"]
+position = Vector2( -306.462, -37.8632 )
+scale = Vector2( 3.68, 1.48 )
+points = PoolVector2Array( 0, -45, 0, 30 )
+[connection signal="pressed" from="Xbutton" to="." method="_on_Xbutton_pressed"]
+[connection signal="input_event" from="DPAD/Area2D" to="." method="_on_Area2D_input_event"]
