@@ -17,5 +17,5 @@ func reset(pos):
 
 func _on_Area_body_entered(body):
 	print("HIT!")
-	body.hurt(1)
+	body.hurt(0.5)
 	self.hide()

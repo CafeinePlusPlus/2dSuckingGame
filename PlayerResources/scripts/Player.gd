@@ -9,10 +9,6 @@ var eBar
 var eBarLength
 var b_instance = []
 var movement = 0b0000
-signal rightImpulse
-signal leftImpulse
-signal playerJump
-signal playerCrounch
 var insCursor = 0
 var velocity = Vector2(0.0,0.0)
 const accel = 10
@@ -58,6 +54,8 @@ func _physics_process(delta):
 	velocity.y = clamp(velocity.y,-maxJump,maxFall)
 	move_and_slide(velocity,Vector2(0,-1))
 
+func flash():
+	playerAnim.modulate = Color(1, 0, 0, 0.3)
 
 func _on_Area2D_input_event(viewport, event, shape_idx):
 	if event is InputEventScreenDrag or (event is InputEventScreenTouch and event.is_pressed()):
