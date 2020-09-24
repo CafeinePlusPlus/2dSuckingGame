@@ -20,14 +20,14 @@ tile_set = ExtResource( 3 )
 cell_size = Vector2( 16, 16 )
 cell_quadrant_size = 64
 collision_use_kinematic = true
-collision_layer = 11
-collision_mask = 4
+collision_layer = 4
+collision_mask = 11
 format = 1
 tile_data = PoolIntArray( 196597, 2, 1, 196598, 2, 1, 196599, 2, 1, 196600, 2, 1, 196601, 2, 1, 196602, 2, 1, 196603, 2, 1, 196604, 2, 1, 196605, 3, 1, 196606, 3, 1, 196607, 3, 1, 131072, 3, 1, 131073, 3, 1, 131074, 3, 1, 131075, 3, 1, 131076, 2, 1, 131077, 2, 1, 131078, 2, 1, 131079, 2, 1, 131080, 2, 1, 131081, 2, 1, 131082, 2, 1, 131083, 2, 1, 131084, 2, 1, 131085, 2, 1, 131086, 2, 1 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-collision_layer = 15
-collision_mask = 4
+collision_layer = 4
+collision_mask = 11
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( 42.8851, 41.7609 )
