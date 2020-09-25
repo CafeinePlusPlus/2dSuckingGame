@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://PlayerResources/pengu.png" type="Texture" id=1]
 [ext_resource path="res://Sprinkles.shader" type="Shader" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://icon.png" type="Texture" id=4]
 [ext_resource path="res://BG.shader" type="Shader" id=5]
 [ext_resource path="res://water.shader" type="Shader" id=6]
+[ext_resource path="res://Line2D.gd" type="Script" id=7]
 [ext_resource path="res://PlayerResources/scripts/Player.gd" type="Script" id=11]
 [ext_resource path="res://PlayerResources/Buttons/PS4.png" type="Texture" id=12]
 [ext_resource path="res://new_convexpolygonshape2d.tres" type="Shape2D" id=13]
@@ -172,12 +173,12 @@ animations = [ {
 }, {
 "frames": [ SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ) ],
 "loop": true,
-"name": "LeftWalk",
+"name": "RightWalk",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ) ],
 "loop": true,
-"name": "RightWalk",
+"name": "LeftWalk",
 "speed": 5.0
 } ]
 
@@ -216,6 +217,7 @@ texture = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 2 )
+position = Vector2( -1.41425, -1.41422 )
 texture = ExtResource( 3 )
 
 [node name="Xbutton" type="TouchScreenButton" parent="."]
@@ -345,5 +347,33 @@ texture = ExtResource( 4 )
 position = Vector2( -306.462, -37.8632 )
 scale = Vector2( 3.68, 1.48 )
 points = PoolVector2Array( 0, -45, 0, 30 )
+script = ExtResource( 7 )
+
+[node name="Line2D" type="Line2D" parent="EnergyBar/Line2D"]
+position = Vector2( 0.090683, -2.93124 )
+points = PoolVector2Array( 0, 38.953, 0, 33.09 )
+default_color = Color( 0.992157, 1, 0, 1 )
+
+[node name="HealthBar" type="Node2D" parent="."]
+
+[node name="Sprite" type="MeshInstance2D" parent="HealthBar"]
+visible = false
+position = Vector2( -306.304, -100.294 )
+scale = Vector2( 0.57, 0.171 )
+mesh = SubResource( 33 )
+texture = ExtResource( 4 )
+
+[node name="Line2D" type="Line2D" parent="HealthBar"]
+position = Vector2( -171.327, -165.22 )
+rotation = -1.5708
+scale = Vector2( 2.76724, 1.72229 )
+points = PoolVector2Array( 0, -45, 0, 30 )
+default_color = Color( 0, 0.859375, 1, 1 )
+script = ExtResource( 7 )
+
+[node name="Line2D" type="Line2D" parent="HealthBar/Line2D"]
+position = Vector2( 0.852417, -2.20135 )
+points = PoolVector2Array( -0.859634, -42.539, -0.859634, -44.7139 )
+default_color = Color( 0.654902, 0.054902, 0.054902, 1 )
 [connection signal="pressed" from="Xbutton" to="." method="_on_Xbutton_pressed"]
 [connection signal="input_event" from="DPAD/Area2D" to="." method="_on_Area2D_input_event"]

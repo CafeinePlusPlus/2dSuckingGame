@@ -7,6 +7,9 @@ var playerAnim
 var bullet
 var eBar
 var eBarLength
+var hBar
+var hBarLength
+var lifePoint = 5
 var b_instance = []
 var movement = 0b0000
 var insCursor = 0
@@ -17,6 +20,7 @@ const maxJump = 170
 const maxFall = 120
 const gravity = 120
 const maxEnergy = 5
+const maxHealth = 5
 var energy = 5
 var cooldown = 0
 
@@ -26,7 +30,9 @@ func _ready():
 	playerAnim = get_node("AnimatedSprite")
 	get_node("Camera2D").make_current()
 	eBar = get_node("EnergyBar/Line2D")
-	eBarLength = (abs(eBar.points[0].y - eBar.points[1].y) - 10) / maxEnergy
+	eBarLength = (abs(eBar.points[0].y - eBar.points[1].y)) / maxEnergy
+	hBar = get_node("HealthBar/Line2D")
+	hBarLength = (abs(hBar.points[0].y - hBar.points[1].y)) / maxHealth
 	bullet = preload("res://MagicBullet.tscn")
 
 func _physics_process(delta):
@@ -56,6 +62,33 @@ func _physics_process(delta):
 
 func flash():
 	playerAnim.modulate = Color(1, 0, 0, 0.3)
+	
+func hurt(lp):
+	if lifePoint > 0 :
+		lifePoint -= lp
+		hBar.points[1].y -= lp * hBarLength
+		if lifePoint == 1 :
+			hBar.change_color(Color(1, 0.023438, 0))
+		if lifePoint == 2 :
+			hBar.change_color(Color(1, 0.515625, 0))
+		if lifePoint == 3 :
+			hBar.change_color(Color(0.898039, 1, 0))
+	if lifePoint == 0:
+		print("GAME OVER!")
+		queue_free()
+
+		
+func heal(lp):
+	if lifePoint < 5 : 
+		lifePoint += lp
+		if lifePoint == 2 :
+			hBar.change_color(Color(1, 0.515625, 0))
+		if lifePoint == 3 :
+			hBar.change_color(Color(0.898039, 1, 0))
+		if lifePoint == 4 :
+			hBar.change_color(Color(0, 0.858824, 1))
+		hBar.points[1].y += lp * hBarLength
+
 
 func _on_Area2D_input_event(viewport, event, shape_idx):
 	if event is InputEventScreenDrag or (event is InputEventScreenTouch and event.is_pressed()):
