@@ -19,4 +19,5 @@ func positionBullet(pos):
 func _on_Area2D_body_entered(body):
 	print("PPP")
 	body.flash()
+	body.hurt(1)
 	pass # Replace with function body.
