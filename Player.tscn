@@ -52,7 +52,7 @@ region = Rect2( 0, 0, 16, 16 )
 [sub_resource type="AtlasTexture" id=9]
 flags = 4
 atlas = ExtResource( 12 )
-region = Rect2( 16, 80, 16, 16 )
+region = Rect2( 16, 48, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=10]
 flags = 4
@@ -62,7 +62,7 @@ region = Rect2( 0, 0, 16, 16 )
 [sub_resource type="AtlasTexture" id=11]
 flags = 4
 atlas = ExtResource( 12 )
-region = Rect2( 16, 48, 16, 16 )
+region = Rect2( 16, 80, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=12]
 flags = 4
@@ -88,12 +88,12 @@ region = Rect2( 16, 64, 16, 16 )
 animations = [ {
 "frames": [ SubResource( 8 ), SubResource( 9 ) ],
 "loop": false,
-"name": "left",
+"name": "right",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 10 ), SubResource( 11 ) ],
 "loop": false,
-"name": "right",
+"name": "left",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 12 ), SubResource( 13 ) ],
