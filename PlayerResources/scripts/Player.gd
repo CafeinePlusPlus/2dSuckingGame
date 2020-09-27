@@ -34,6 +34,7 @@ func _ready():
 	hBar = get_node("HealthBar/Line2D")
 	hBarLength = (abs(hBar.points[0].y - hBar.points[1].y)) / maxHealth
 	bullet = preload("res://MagicBullet.tscn")
+	
 
 func _physics_process(delta):
 	cooldown += delta
@@ -62,6 +63,14 @@ func _physics_process(delta):
 
 func flash():
 	playerAnim.modulate = Color(1, 0, 0, 0.3)
+	print("start")
+	yield(get_tree().create_timer(0.5), "timeout") #creating a delay without node
+	print("end")
+	
+	playerAnim.modulate = Color(1,1,1,1)
+	print("reversing flash")
+	
+	
 	
 func hurt(lp):
 	if lifePoint > 0 :
