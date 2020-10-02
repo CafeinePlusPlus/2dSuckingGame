@@ -60,16 +60,21 @@ func _physics_process(delta):
 	velocity.x = clamp(velocity.x,-maxSpeed,maxSpeed)
 	velocity.y = clamp(velocity.y,-maxJump,maxFall)
 	move_and_slide(velocity,Vector2(0,-1))
+	
 
 func flash():
 	playerAnim.modulate = Color(1, 0, 0, 0.3)
 	print("start")
 	yield(get_tree().create_timer(0.5), "timeout") #creating a delay without node
 	print("end")
-	
 	playerAnim.modulate = Color(1,1,1,1)
 	print("reversing flash")
 	
+	
+func player_animation(float1, float2, float3, float4, delay_time):
+	playerAnim.modulate = Color(float1, float2, float3, float4)
+	yield(get_tree().create_timer(delay_time), "timeout")
+	playerAnim.modulate = Color(1,1,1,1)
 	
 	
 func hurt(lp):
