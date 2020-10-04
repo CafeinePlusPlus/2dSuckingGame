@@ -5,6 +5,7 @@ var dpad
 var downcast
 var playerAnim
 var bullet
+var bomb
 var eBar
 var eBarLength
 var hBar
@@ -23,6 +24,7 @@ const maxEnergy = 5
 const maxHealth = 5
 var energy = 5
 var cooldown = 0
+var weapon
 
 func _ready():
 	dpad = get_node("./DPAD/Sprite")
@@ -34,7 +36,8 @@ func _ready():
 	hBar = get_node("HealthBar/Line2D")
 	hBarLength = (abs(hBar.points[0].y - hBar.points[1].y)) / maxHealth
 	bullet = preload("res://MagicBullet.tscn")
-	
+	bomb = preload("res://MagicBomb.tscn")
+	weapon = 1
 
 func _physics_process(delta):
 	cooldown += delta
@@ -63,18 +66,7 @@ func _physics_process(delta):
 	
 
 func flash():
-	playerAnim.modulate = Color(1, 0, 0, 0.3)
-	print("start")
-	yield(get_tree().create_timer(0.5), "timeout") #creating a delay without node
-	print("end")
-	playerAnim.modulate = Color(1,1,1,1)
-	print("reversing flash")
-	
-	
-func player_animation(float1, float2, float3, float4, delay_time):
-	playerAnim.modulate = Color(float1, float2, float3, float4)
-	yield(get_tree().create_timer(delay_time), "timeout")
-	playerAnim.modulate = Color(1,1,1,1)
+	player_animation(1, 0, 0, 0.3, 0.5)
 	
 	
 func hurt(lp):
@@ -90,6 +82,13 @@ func hurt(lp):
 	if lifePoint == 0:
 		print("GAME OVER!")
 		queue_free()
+		
+		
+func player_animation(float1, float2, float3, float4, delay_time):
+	playerAnim.modulate = Color(float1, float2, float3, float4)
+	yield(get_tree().create_timer(delay_time), "timeout")
+	playerAnim.modulate = Color(1,1,1,1)
+	
 
 		
 func heal(lp):
@@ -139,16 +138,31 @@ func _on_Area2D_input_event(viewport, event, shape_idx):
 		movement = 0
 
 func _on_Xbutton_pressed():
-	if energy == 0:
-		return
-	if b_instance.size() < maxEnergy:
-		b_instance.push_back(bullet.instance())
+	if weapon == 1:
+		if energy == 0:
+			return
+		if b_instance.size() < maxEnergy:
+			b_instance.push_back(bullet.instance())
+			
+			b_instance[b_instance.size() - 1].positionBullet(self.position)
+			get_parent().add_child(b_instance[b_instance.size() - 1])
+		else:
+			b_instance[insCursor%maxEnergy].reset(self.position)
+			insCursor+=1
+		energy -= 1
+		eBar.points[0].y += eBarLength
+	if weapon == 2:
+		if energy == 0:
+			return
+		if b_instance.size() < maxEnergy:
+				b_instance.push_back(bomb.instance())
+				
+				b_instance[b_instance.size() - 1].positionBomb(self.position)
+				get_parent().add_child(b_instance[b_instance.size() - 1])
+		else:
+			b_instance[insCursor%maxEnergy].reset(self.position)
+			insCursor+=1
+		energy -= 1
+		eBar.points[0].y += eBarLength
 		
-		b_instance[b_instance.size() - 1].positionBullet(self.position)
-		get_parent().add_child(b_instance[b_instance.size() - 1])
-	else:
-		b_instance[insCursor%maxEnergy].reset(self.position)
-		insCursor+=1
-	energy -= 1
-	eBar.points[0].y += eBarLength
 	# Replace with function body.
