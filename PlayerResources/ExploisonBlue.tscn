@@ -32,4 +32,3 @@ amount = 200
 lifetime = 0.5
 explosiveness = 0.5
 process_material = SubResource( 3 )
-[connection signal="draw" from="." to="." method="_on_ExploisonBlue_draw"]

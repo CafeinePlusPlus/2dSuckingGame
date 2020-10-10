@@ -24,7 +24,7 @@ const maxEnergy = 5
 const maxHealth = 5
 var energy = 5
 var cooldown = 0
-var weapon
+var weapon # 0 == none, 1 == bullet, 2 == bomb
 
 func _ready():
 	dpad = get_node("./DPAD/Sprite")
@@ -35,9 +35,15 @@ func _ready():
 	eBarLength = (abs(eBar.points[0].y - eBar.points[1].y)) / maxEnergy
 	hBar = get_node("HealthBar/Line2D")
 	hBarLength = (abs(hBar.points[0].y - hBar.points[1].y)) / maxHealth
-	bullet = preload("res://MagicBullet.tscn")
-	bomb = preload("res://MagicBomb.tscn")
 	weapon = 1
+	if weapon == 1:
+		playerAnim.animation = "idle"
+		bullet = preload("res://MagicBullet.tscn")
+	elif weapon == 0:
+		playerAnim.animation = "idleWithoutWeapon"
+	elif weapon == 2:
+		bomb = preload("res://MagicBomb.tscn")
+		playerAnim.animation = "idleWithMBomb"
 
 func _physics_process(delta):
 	cooldown += delta
@@ -79,7 +85,7 @@ func hurt(lp):
 			hBar.change_color(Color(1, 0.515625, 0))
 		if lifePoint == 3 :
 			hBar.change_color(Color(0.898039, 1, 0))
-	if lifePoint == 0:
+	if lifePoint <= 0:
 		print("GAME OVER!")
 		queue_free()
 		
@@ -113,7 +119,12 @@ func _on_Area2D_input_event(viewport, event, shape_idx):
 		elif shape_idx == 1:
 			movement = (movement | 1 << shape_idx) & ~8
 			dpad.animation = "right"
-			playerAnim.animation = "RightWalk"
+			if weapon == 1 :
+				playerAnim.animation = "RightWalk"
+			elif weapon == 0 :
+				playerAnim.animation = "RightWalkWithoutWeapon"
+			elif weapon == 2:
+				playerAnim.animation = "RightWalkWithMBomb"
 			playerAnim.flip_h = false
 			#velocity.x += accel
 		elif shape_idx == 2:
@@ -122,7 +133,12 @@ func _on_Area2D_input_event(viewport, event, shape_idx):
 		elif shape_idx == 3:
 			movement = (movement | 1 << shape_idx) & ~2
 			dpad.animation = "left"
-			playerAnim.animation = "LeftWalk"
+			if weapon == 1 :
+				playerAnim.animation = "LeftWalk"
+			elif weapon == 0 :
+				playerAnim.animation = "RightWalkWithoutWeapon"
+			elif weapon == 2:
+				playerAnim.animation = "LeftWalkWithMBomb"
 			playerAnim.flip_h = true
 			#velocity.x -= accel
 		else:
@@ -134,7 +150,12 @@ func _on_Area2D_input_event(viewport, event, shape_idx):
 		dpad.frame = 1
 	if event is InputEventScreenTouch and !event.is_pressed():
 		dpad.frame = 0
-		playerAnim.animation = "idle"
+		if weapon == 1:
+			playerAnim.animation = "idle"
+		elif weapon == 0:
+			playerAnim.animation = "idleWithoutWeapon"
+		elif weapon == 2:
+			playerAnim.animation = "idleWithMBomb"
 		movement = 0
 
 func _on_Xbutton_pressed():

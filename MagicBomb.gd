@@ -17,12 +17,12 @@ func _process(delta):
 
 func reset(pos):
 	position = pos
-	self.show()
+	bomb.visible = true
 
 func _on_Area2D_body_entered(body):
 	exploison.show()
 	print("HIT!")
 	body.hurt(3)
-	bomb.hide()
+	bomb.visible = false
 	yield(get_tree().create_timer(0.5),"timeout")
 	exploison.hide()
